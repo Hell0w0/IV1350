@@ -1,10 +1,12 @@
 package se.kth.IV1350.seminar_3.controller;
 
-import se.kth.IV1350.seminar_3.integration.CashRegister;
-import se.kth.IV1350.seminar_3.integration.EASHandler;
-import se.kth.IV1350.seminar_3.integration.EISHandler;
-import se.kth.IV1350.seminar_3.integration.ReceiptPrinter;
-import se.kth.IV1350.seminar_3.model.Sale;
+import se.kth.IV1350.pos.DTO.ItemDTO;
+import se.kth.IV1350.pos.DTO.SaleInformationDTO;
+import se.kth.IV1350.pos.integration.CashRegister;
+import se.kth.IV1350.pos.integration.EASHandler;
+import se.kth.IV1350.pos.integration.EISHandler;
+import se.kth.IV1350.pos.model.Sale;
+
 
 /**
  * This is the applications only controller.
@@ -40,4 +42,10 @@ public class Controller {
         System.out.println("Controller was started successfully!");
     }
     
+    public SaleInformationDTO enterItem(String itemIdentifier){
+            ItemDTO item = findItem(itemIdentifier);
+            return addItem(item);
+            
+    }
 }
+    
