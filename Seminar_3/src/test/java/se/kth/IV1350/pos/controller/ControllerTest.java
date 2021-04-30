@@ -50,13 +50,5 @@ public class ControllerTest {
         assertTrue(printout.contains(expectedOutput),"UI did not start correctly");
     }
     
-    @Test
-    public void testEnterItem() {
-        itemIdentifier = "1";
-        instanceToTest.enterItem(itemIdentifier);
-        String printout = printoutBuffer.toString();
-        String expectedOutput = "Råttfälla";
-        assertTrue(printout.contains(expectedOutput),"Item wasnt entered corrcetly");
-    }
     
 }

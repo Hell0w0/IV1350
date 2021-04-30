@@ -32,8 +32,12 @@ public class Receipt {
         this.currency=paymentDTO.getCurrency();
         this.amountPaid=paymentDTO.getAmountPaid();
         this.totalVAT=saleDTO.getTotalVAT();
+        this.storeInformation="ICA,Ringvägen 1, 666 42";
         this.printer=new ReceiptPrinter();
     }   
+    /**
+     * This function send the receipt information to the printer.
+     */
     public void sendReceiptToPrinter(){   
         printer.printReceiptToCustomer(this);
     } 
