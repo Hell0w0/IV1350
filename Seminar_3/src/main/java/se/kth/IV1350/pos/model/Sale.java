@@ -1,10 +1,11 @@
-package se.kth.IV1350.seminar_3.model;
+package se.kth.IV1350.pos.model;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 import se.kth.IV1350.pos.DTO.ItemDTO;
+import se.kth.IV1350.pos.DTO.PaymentDTO;
+import se.kth.IV1350.pos.DTO.SaleDTO;
 import se.kth.IV1350.pos.DTO.SaleInformationDTO;
-import se.kth.IV1350.pos.model.Item;
 
 /**
  * One single sale made by one singular customer, payed with one payment.
@@ -12,7 +13,8 @@ import se.kth.IV1350.pos.model.Item;
  */
 public class Sale {
     private LocalTime saleTime;
-    ArrayList <Item> items; 
+    private ArrayList <Item> items; 
+    private ArrayList <Item> publicItems; 
     private double totalPrice;
     private double totalVAT;
     
@@ -42,6 +44,12 @@ public class Sale {
         totalVAT = VAT;
         totalPrice=price+VAT;
     }
+    
+    /**
+     * Adds a new item to the Sale, if the item is already in Sale, rasise the item quantity by 1 and send back the saleInformation.
+     * @param itemDTO contains information about the item.
+     * @return 
+     */
     public SaleInformationDTO addItem(ItemDTO itemDTO){
         if(!checkForDuplicateItem(itemDTO)){
             addedItem = new Item(itemDTO);
@@ -50,11 +58,36 @@ public class Sale {
         else{
             for(Item item:items){
                 if (item.getItemIdentifier().equals(itemDTO.getItemIdentifier())){
+                    item.raiseQuantity();
                     addedItem = item;
                 }
             }
         }
         calculateRunningTotal();
         return new SaleInformationDTO(addedItem, totalPrice);
+    }
+    
+    public SaleDTO createSaleDTO(){
+        return new SaleDTO(this);
+    }
+    public void createAndPrintReceipt(SaleDTO saleDTO,PaymentDTO paymentDTO){
+        Receipt receipt = new Receipt(saleDTO,paymentDTO);
+        receipt.sendReceiptToPrinter();
+    }
+    public double getTotalPrice(){
+        return totalPrice;
+    }
+    public double getTotalVAT(){
+        return totalVAT;
+    }
+    public ArrayList getItems(){
+       
+        for(Item item:items){
+            publicItems.add(new Item(item));
+        }
+        return publicItems;
+    }
+    public LocalTime getSaleTime(){
+        return saleTime;
     }
 }

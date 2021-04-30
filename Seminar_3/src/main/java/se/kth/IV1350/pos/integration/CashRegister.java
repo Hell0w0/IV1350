@@ -3,21 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.kth.IV1350.seminar_3.integration;
+package se.kth.IV1350.pos.integration;
 
 /**
  *
  * @author charl
  */
 public class CashRegister {
-    private double amount;
+    private double amountInRegister;
     public CashRegister(){
-        this.amount = countAmountInRegister();
+        this.amountInRegister = countAmountInRegister();
     }
     public double countAmountInRegister(){
         return 1000;
     }
     public double getAmountInRegister(){
-        return amount;
+        return amountInRegister;
+    }
+    public void updateAmountInRegister(double amountPaid){
+        amountInRegister += amountPaid;
     }
 }

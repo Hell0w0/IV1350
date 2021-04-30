@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.kth.IV1350.seminar_3.integration;
+package se.kth.IV1350.pos.integration;
+
+import se.kth.IV1350.pos.DTO.PaymentDTO;
 
 /**
  *
  * @author charl
  */
 public class EASHandler {
-    
+    public void registerPayment(PaymentDTO paymentDTO){
+        System.out.println("Payment logged");
+    }
 }

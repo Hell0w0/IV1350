@@ -1,4 +1,4 @@
-package se.kth.IV1350.seminar_3.controller;
+package se.kth.IV1350.pos.controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -6,8 +6,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import se.kth.IV1350.seminar_3.integration.EASHandler;
-import se.kth.IV1350.seminar_3.integration.EISHandler;
+import se.kth.IV1350.pos.integration.EASHandler;
+import se.kth.IV1350.pos.integration.EISHandler;
+
 
 /**
  *
@@ -17,6 +18,9 @@ public class ControllerTest {
     private Controller instanceToTest;
     private ByteArrayOutputStream printoutBuffer;
     private PrintStream originalSysOut;
+    private String itemIdentifier;
+    private EISHandler eis;
+    private EASHandler eas;
     
     @BeforeEach
     public void setUp() {        
@@ -26,10 +30,10 @@ public class ControllerTest {
         System.setOut(inMemSysOut);
         
         
-        EASHandler eas = new EASHandler();
-        EISHandler eis = new EISHandler();
-        
-        Controller instanceToTest = new Controller(eis,eas);
+        eas = new EASHandler();
+        eis = new EISHandler();
+        instanceToTest = new Controller(eis,eas);
+
     }
     
     @AfterEach
@@ -44,6 +48,15 @@ public class ControllerTest {
         String printout = printoutBuffer.toString();
         String expectedOutput = "successfully";
         assertTrue(printout.contains(expectedOutput),"UI did not start correctly");
+    }
+    
+    @Test
+    public void testEnterItem() {
+        itemIdentifier = "1";
+        instanceToTest.enterItem(itemIdentifier);
+        String printout = printoutBuffer.toString();
+        String expectedOutput = "Råttfälla";
+        assertTrue(printout.contains(expectedOutput),"Item wasnt entered corrcetly");
     }
     
 }

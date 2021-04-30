@@ -19,4 +19,16 @@ public class SaleInformationDTO {
         this.currentItemName = addedItem.getName();
         this.runningTotal = runningTotal;
     }
+    public String getCurrentItemName(){
+        return currentItemName;
+    }
+    public String getCurrentItemDescription(){
+        return currentItemDescription;
+    }
+    public double getCurrentItemPrice(){
+        return currentItemPrice;
+    }
+    public double getRunningTotal(){
+        return runningTotal;
+    }    
 }

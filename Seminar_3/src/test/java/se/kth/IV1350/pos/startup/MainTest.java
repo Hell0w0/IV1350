@@ -1,4 +1,4 @@
-package se.kth.IV1350.seminar_3.startup;
+package se.kth.IV1350.pos.startup;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

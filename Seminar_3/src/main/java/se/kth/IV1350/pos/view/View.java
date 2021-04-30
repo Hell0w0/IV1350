@@ -1,6 +1,6 @@
-package se.kth.IV1350.seminar_3.view;
+package se.kth.IV1350.pos.view;
 
-import se.kth.IV1350.seminar_3.controller.Controller;
+import se.kth.IV1350.pos.controller.Controller;
 
 /**
  * Placeholder for the real view. Hardcoded with 

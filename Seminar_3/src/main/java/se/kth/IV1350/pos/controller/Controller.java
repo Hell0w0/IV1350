@@ -1,10 +1,13 @@
-package se.kth.IV1350.seminar_3.controller;
+package se.kth.IV1350.pos.controller;
 
 import se.kth.IV1350.pos.DTO.ItemDTO;
+import se.kth.IV1350.pos.DTO.PaymentDTO;
+import se.kth.IV1350.pos.DTO.SaleDTO;
 import se.kth.IV1350.pos.DTO.SaleInformationDTO;
 import se.kth.IV1350.pos.integration.CashRegister;
 import se.kth.IV1350.pos.integration.EASHandler;
 import se.kth.IV1350.pos.integration.EISHandler;
+import se.kth.IV1350.pos.model.Receipt;
 import se.kth.IV1350.pos.model.Sale;
 
 
@@ -43,9 +46,28 @@ public class Controller {
     }
     
     public SaleInformationDTO enterItem(String itemIdentifier){
-            ItemDTO item = findItem(itemIdentifier);
-            return addItem(item);
-            
+            ItemDTO item = eis.findItem(itemIdentifier);
+            SaleInformationDTO saleInformation = sale.addItem(item);
+            System.out.println(saleInformation.getCurrentItemName());
+            return saleInformation;
+    }
+    public double pay(double amountPaid,String currency){
+        
+        SaleDTO saleDTO = sale.createSaleDTO();
+        PaymentDTO paymentDTO = new PaymentDTO(amountPaid,currency);
+        double change = paymentDTO.getAmountPaid() - saleDTO.getTotalPrice();
+
+        cashRegister.updateAmountInRegister(amountPaid - change);
+
+        updateEISAndEASAndPrintReceipt(saleDTO,paymentDTO);
+
+        return change;
+
+    }
+    public void updateEISAndEASAndPrintReceipt(SaleDTO saleDTO,PaymentDTO paymentDTO){
+        eas.registerPayment(paymentDTO);
+        eis.updateInventory(saleDTO);
+        sale.createAndPrintReceipt(saleDTO,paymentDTO);
     }
 }
     

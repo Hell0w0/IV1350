@@ -1,4 +1,4 @@
-package se.kth.IV1350.seminar_3.view;
+package se.kth.IV1350.pos.view;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -6,9 +6,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
-import se.kth.IV1350.seminar_3.controller.Controller;
-import se.kth.IV1350.seminar_3.integration.EASHandler;
-import se.kth.IV1350.seminar_3.integration.EISHandler;
+import se.kth.IV1350.pos.controller.Controller;
+import se.kth.IV1350.pos.integration.EASHandler;
+import se.kth.IV1350.pos.integration.EISHandler;
+
 
 /**
  *

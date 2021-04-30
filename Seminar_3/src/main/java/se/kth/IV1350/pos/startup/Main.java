@@ -1,10 +1,10 @@
-package se.kth.IV1350.seminar_3.startup;
+package se.kth.IV1350.pos.startup;
 
-import se.kth.IV1350.seminar_3.controller.Controller;
-import se.kth.IV1350.seminar_3.integration.EASHandler;
-import se.kth.IV1350.seminar_3.integration.EISHandler;
-import se.kth.IV1350.seminar_3.integration.ReceiptPrinter;
-import se.kth.IV1350.seminar_3.view.View;
+import se.kth.IV1350.pos.controller.Controller;
+import se.kth.IV1350.pos.integration.EASHandler;
+import se.kth.IV1350.pos.integration.EISHandler;
+import se.kth.IV1350.pos.integration.ReceiptPrinter;
+import se.kth.IV1350.pos.view.View;
 
 /**
  * This is the start sequence of the entire application.

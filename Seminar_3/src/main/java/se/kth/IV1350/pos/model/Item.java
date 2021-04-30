@@ -19,6 +19,15 @@ public class Item {
     private String description;
     private String itemIdentifier;
     
+    public Item(Item item) {
+        description = item.getDescription();
+        VATRate = item.getVATRate();
+        price = item.getPrice();
+        name = item.getName();
+        itemIdentifier = item.getItemIdentifier();
+        quantity = item.getQuantity();
+    }
+        
     public Item(ItemDTO itemDTO){
         this.quantity = 1;
         this.name = itemDTO.getName();
@@ -43,7 +52,14 @@ public class Item {
     public double getPrice(){
         return price;
     }
+    
+    public double getVATRate(){
+        return VATRate;
+    }
     public double getVATAmount(){
         return 0.01*VATRate* price;
-    }    
+    }  
+    public void raiseQuantity(){
+        quantity+=1;
+    }  
 }
