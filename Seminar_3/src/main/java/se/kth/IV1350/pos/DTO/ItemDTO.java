@@ -1,12 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.kth.IV1350.pos.DTO;
 
 /**
- *
+ * ItemDTO transfers a copy of Item so values in Item cant be changed changed by unauthorized programs.
+ * name refers to the name of the item
+ * VATRate refers to the VATRate of the item
+ * price refers to the price of the item
+ * description 
  * @author charl
  */
 public class ItemDTO {
@@ -15,7 +14,7 @@ public class ItemDTO {
     private double price;
     private String description;
     private String itemIdentifier;
-    
+
     public ItemDTO(String name, double VATRate,double price, String description, String identifer){
         this.name = name;
         this.VATRate = VATRate;

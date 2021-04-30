@@ -20,12 +20,12 @@ public class Item {
     private String itemIdentifier;
     
     public Item(Item item) {
-        description = item.getDescription();
-        VATRate = item.getVATRate();
-        price = item.getPrice();
-        name = item.getName();
-        itemIdentifier = item.getItemIdentifier();
-        quantity = item.getQuantity();
+        this.description = item.getDescription();
+        this.VATRate = item.getVATRate();
+        this.price = item.getPrice();
+        this.name = item.getName();
+        this.itemIdentifier = item.getItemIdentifier();
+        this.quantity = item.getQuantity();
     }
         
     public Item(ItemDTO itemDTO){
@@ -36,7 +36,7 @@ public class Item {
         this.description = itemDTO.getDescription();
         this.itemIdentifier  = itemDTO.getItemIdentifier();
     }
-    
+
     public String getName(){
         return name;
     }

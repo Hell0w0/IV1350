@@ -13,7 +13,7 @@ public class SaleInformationDTO {
     private String currentItemName;
     private double runningTotal;
 
-    public SaleInformationDTO(Item addedItem,double runningTotal){
+    public SaleInformationDTO(ItemDTO addedItem,double runningTotal){
         this.currentItemDescription = addedItem.getDescription();
         this.currentItemPrice = addedItem.getPrice();
         this.currentItemName = addedItem.getName();

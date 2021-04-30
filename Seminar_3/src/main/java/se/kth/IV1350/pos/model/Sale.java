@@ -28,6 +28,7 @@ public class Sale {
         public boolean checkForDuplicateItem(ItemDTO itemDTO){
             for(Item item:items){
                 if(item.getItemIdentifier().equals(itemDTO.getItemIdentifier())){
+                    item.raiseQuantity();
                     return true;
                 }
             }
@@ -55,16 +56,9 @@ public class Sale {
             addedItem = new Item(itemDTO);
             items.add(addedItem);
         }
-        else{
-            for(Item item:items){
-                if (item.getItemIdentifier().equals(itemDTO.getItemIdentifier())){
-                    item.raiseQuantity();
-                    addedItem = item;
-                }
-            }
-        }
+        
         calculateRunningTotal();
-        return new SaleInformationDTO(addedItem, totalPrice);
+        return new SaleInformationDTO(itemDTO, totalPrice);
     }
     
     public SaleDTO createSaleDTO(){
