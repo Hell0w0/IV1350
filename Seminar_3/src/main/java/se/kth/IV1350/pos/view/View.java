@@ -21,6 +21,6 @@ public class View {
      */
     public void runFakeExe(){
         contr.startSale();
-        System.out.println(contr.enterItem("1").getCurrentItemName());
+        System.out.println("Sale has started");
     }
 }

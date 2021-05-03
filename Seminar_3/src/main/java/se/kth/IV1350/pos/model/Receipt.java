@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.kth.IV1350.pos.model;
 
 import java.time.LocalTime;
@@ -24,7 +19,11 @@ public class Receipt {
     private String currency;
     private String storeInformation;
     private ReceiptPrinter printer;
-    
+    /**
+     * Creates the constructor for a receipt.
+     * @param saleDTO a object of SaleDTO holding the informaiton about a Sale.
+     * @param paymentDTO a object of PaymentDTO holding the information about the payment of the sale.
+     */
     public Receipt(SaleDTO saleDTO, PaymentDTO paymentDTO){
         this.saleTime=saleDTO.getSaleTime();
         this.items=saleDTO.getItems();
@@ -41,5 +40,22 @@ public class Receipt {
     public void sendReceiptToPrinter(){   
         printer.printReceiptToCustomer(this);
     } 
-    
+    /**
+     * returns the store informaiton, like address and name
+     * @return the store infromation
+     */
+    public String getStoreInformation(){
+        return storeInformation;
+    }
+    /**
+     * Creates a receipt of some of its contents.
+     * @return a summary of the items bought and amount paid.
+     */
+    public String createReceipt(){
+        StringBuilder sb = new StringBuilder();
+        for(Item item:items){
+            sb.append(item.getName()+" ");
+        }
+        return "Items: "+sb.toString()+"Total: "+totalPrice+" Amount paid: "+(int)amountPaid+" "+currency;
+    }
 }

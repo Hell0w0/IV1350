@@ -24,17 +24,25 @@ public class Sale {
         saleTime = LocalTime.now();
         items = new ArrayList<Item>();
     }
-    
-        public boolean checkForDuplicateItem(ItemDTO itemDTO){
-            for(Item item:items){
-                if(item.getItemIdentifier().equals(itemDTO.getItemIdentifier())){
-                    item.raiseQuantity();
-                    return true;
-                }
+    /**
+     * Checks the list of items currently in sale with the scanned item.
+     * Raises the quantity of the item if its already in the system.
+     * @param itemDTO an object ItemDTO holding infromation about an item.
+     * @return true if item is already in sale else false.
+     */
+    private boolean checkForDuplicateItem(ItemDTO itemDTO){
+        for(Item item:items){
+            if(item.getItemIdentifier().equals(itemDTO.getItemIdentifier())){
+                item.raiseQuantity();
+                System.out.println("Quantity raised");
+                return true;
             }
-            return false;
         }
-    
+        return false;
+    }
+    /**
+     * This function calculates the running total based of the items price, vat and quantity.
+     */
     private void calculateRunningTotal(){
         double price = 0;
         double VAT = 0;
@@ -47,9 +55,10 @@ public class Sale {
     }
     
     /**
-     * Adds a new item to the Sale, if the item is already in Sale, rasise the item quantity by 1 and send back the saleInformation.
-     * @param itemDTO contains information about the item.
-     * @return 
+     * This function adds an item to sale. if item is duplicate the quantity is raised in checkForDuplicateItem. 
+     * Calculates the new running total.
+     * @param itemDTO an object ItemDTO contains information about the item.
+     * @return an object that holds the information about the most recent added item ans the running total.
      */
     public SaleInformationDTO addItem(ItemDTO itemDTO){
         if(!checkForDuplicateItem(itemDTO)){
@@ -58,30 +67,72 @@ public class Sale {
         }
         
         calculateRunningTotal();
-        return new SaleInformationDTO(itemDTO, totalPrice);
+        return new SaleInformationDTO(itemDTO,this);
     }
-    
+    /**
+     * This function creates a SaleDTO from the Sale object.
+     * @return SaleDTO, an object that holds information about the sale.
+     */
     public SaleDTO createSaleDTO(){
         return new SaleDTO(this);
     }
-    public void createAndPrintReceipt(SaleDTO saleDTO,PaymentDTO paymentDTO){
+    /**
+     * This function creates a receipt for the current sale and prints the receipt.
+     * @param saleDTO an object that holds information about the sale.
+     * @param paymentDTO an object that holds information about the payment.
+     * @return placeholder receipt because ReceiptPrinter isnt fully implemented.
+     */
+    public String getReceiptSummary(SaleDTO saleDTO,PaymentDTO paymentDTO){
         Receipt receipt = new Receipt(saleDTO,paymentDTO);
         receipt.sendReceiptToPrinter();
+        return receipt.createReceipt();
     }
+    /**
+     * Returns the total price of the sale
+     * @return total price of sale
+     */
     public double getTotalPrice(){
         return totalPrice;
     }
+    /**
+     * Returns total Vat of the sale
+     * @return total vat of sale
+     */
     public double getTotalVAT(){
         return totalVAT;
     }
+    /**
+     * Return a duplicate list of items, this list is made up of duplicates of the Item objects in items.
+     * publicItems refers to a duplicate list of items.
+     * @return a list of Item objects.
+     */
     public ArrayList getItems(){
-       
+        publicItems = new ArrayList<Item>();
+
         for(Item item:items){
             publicItems.add(new Item(item));
         }
         return publicItems;
     }
+    /**
+     * returns time of completed sale
+     * @return time of sale
+     */
     public LocalTime getSaleTime(){
         return saleTime;
     }
+    /**
+     * Find the items quantity based on its identifer.
+     * @param itemIdentifer  identifer of the item wanting to be found.
+     * @return the quantity of the item wanting to be found.
+     */
+    public int getQuantityOfItem(String itemIdentifer){
+        for(Item item:items){
+            if(item.getItemIdentifier().equals(itemIdentifer)){
+                return item.getQuantity();
+            }
+        }
+        return 0;
+    }
+    
 }
