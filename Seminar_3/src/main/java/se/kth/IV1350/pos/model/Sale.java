@@ -82,10 +82,10 @@ public class Sale {
      * @param paymentDTO an object that holds information about the payment.
      * @return placeholder receipt because ReceiptPrinter isnt fully implemented.
      */
-    public String getReceiptSummary(SaleDTO saleDTO,PaymentDTO paymentDTO){
-        Receipt receipt = new Receipt(saleDTO,paymentDTO);
+    public String printReceipt(PaymentDTO paymentDTO){
+        Receipt receipt = new Receipt(this.createSaleDTO(),paymentDTO);
         receipt.sendReceiptToPrinter();
-        return receipt.createReceipt();
+        return receipt.getReceiptSummary();
     }
     /**
      * Returns the total price of the sale

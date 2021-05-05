@@ -100,9 +100,11 @@ public class ControllerTest {
     public void testReceipt() {
         instanceToTest.startSale();
         instanceToTest.enterItem("1");
-        instanceToTest.pay(70,"kr");
-        String receiptString = instanceToTest.printReceipt();
-        String expectedOutput = "Items: Råttfälla Total: 62.72 Amount paid: 70 kr";
+        instanceToTest.enterItem("1");
+        instanceToTest.enterItem("2");
+        instanceToTest.pay(140,"kr");
+        String receiptString = instanceToTest.completeSale();
+        String expectedOutput = "ICA,Ringvägen 1, 666 42\nItems: \nRåttfälla 2 112.0 kr\nSko 1 2.0 kr\nTotal: 127.68 kr\nVAT: 13.68 kr\nAmount paid: 140 kr";
         assertEquals(expectedOutput,receiptString,"Print receipt isnt working correctly");
     } 
 }

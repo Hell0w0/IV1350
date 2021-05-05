@@ -51,11 +51,11 @@ public class Receipt {
      * Creates a receipt of some of its contents.
      * @return a summary of the items bought and amount paid.
      */
-    public String createReceipt(){
+    public String getReceiptSummary(){
         StringBuilder sb = new StringBuilder();
         for(Item item:items){
-            sb.append(item.getName()+" ");
+            sb.append(item.getName()+" "+item.getQuantity()+" "+item.getPrice()*item.getQuantity()+" kr"+"\n");
         }
-        return "Items: "+sb.toString()+"Total: "+totalPrice+" Amount paid: "+(int)amountPaid+" "+currency;
+        return storeInformation+"\n"+"Items: \n"+sb.toString()+"Total: "+totalPrice+" kr\n"+"VAT: "+totalVAT+" kr\n"+"Amount paid: "+(int)amountPaid+" "+currency;
     }
 }

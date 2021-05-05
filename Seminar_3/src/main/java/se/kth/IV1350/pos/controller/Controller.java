@@ -81,11 +81,12 @@ public class Controller {
     }
     /**
      * The function completes the sale by updating the external systems and printing a receipt to the customer.
+     * The return is a placeholder for an actual receipt since the hardware of the receipt printer isnt implemented 
      * @return a receipt with the information of the current sale.
      */
     public String completeSale(){
         updateEISAndEAS();
-        return printReceipt();
+        return sale.printReceipt(paymentDTO);
     }
     /**
     * The function updates the External inventory and External accounting System with the Sale and payment informaiton accordingly.
@@ -96,13 +97,6 @@ public class Controller {
         eas.registerPayment(paymentDTO);
         eis.updateInventory(saleDTO);
     }
-    /**
-     * The function prints a receipt of the current sale.
-     * @return a String of the receipt.
-     */
-    public String printReceipt(){
-        return sale.getReceiptSummary(saleDTO, paymentDTO);
 
-    }
 }
     
