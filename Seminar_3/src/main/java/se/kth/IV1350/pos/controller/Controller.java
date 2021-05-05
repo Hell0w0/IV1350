@@ -58,7 +58,6 @@ public class Controller {
     public SaleInformationDTO enterItem(String itemIdentifier){
             ItemDTO item = eis.findItem(itemIdentifier);
             SaleInformationDTO saleInformation = sale.addItem(item);
-            System.out.println(saleInformation.getCurrentItemName());
             return saleInformation;
     }
     /**
