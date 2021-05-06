@@ -72,7 +72,7 @@ public class Controller {
         
         saleDTO = sale.createSaleDTO();
         paymentDTO = new PaymentDTO(amountPaid,currency);
-        double change = paymentDTO.getAmountPaid() - saleDTO.getTotalPrice();
+        double change = Math.round((paymentDTO.getAmountPaid() - saleDTO.getTotalPrice()) * 100.0) / 100.0;
 
         cashRegister.updateAmountInRegister(amountPaid - change);
 
