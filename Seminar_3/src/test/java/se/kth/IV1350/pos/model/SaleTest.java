@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import se.kth.IV1350.pos.DTO.ItemDTO;
 import se.kth.IV1350.pos.DTO.PaymentDTO;
-import se.kth.IV1350.pos.DTO.SaleDTO;
 
 /**
  *
@@ -19,7 +18,6 @@ import se.kth.IV1350.pos.DTO.SaleDTO;
 public class SaleTest {
     @Test
     public void testAddItem() {
-        System.out.println("addItem");
         ItemDTO itemDTO = new ItemDTO("Råttfälla",12,56,"Hjälper dig att fånga råttor eller nypa dina kompisar i tårna.","1");
         Sale instance = new Sale();
         String expResult = "Råttfälla";
@@ -29,7 +27,6 @@ public class SaleTest {
     
     @Test
     public void testDuplicateItem() {
-        System.out.println("duplicateItems");
         ItemDTO itemDTO = new ItemDTO("Råttfälla",12,56,"Hjälper dig att fånga råttor eller nypa dina kompisar i tårna.","1");
         Sale instance = new Sale();
         int expResult = 2;

@@ -2,6 +2,7 @@ package se.kth.IV1350.pos.view;
 
 import se.kth.IV1350.pos.DTO.SaleInformationDTO;
 import se.kth.IV1350.pos.controller.Controller;
+import se.kth.IV1350.pos.model.ItemNotFoundException;
 
 /**
  * Placeholder for the real view. Hardcoded with 
@@ -20,7 +21,7 @@ public class View {
     /**
      * Preforms a fake sale, by calling all system operaitions in the controller.
      */
-    public void runFakeExe(){
+    public void runFakeExe() throws ItemNotFoundException{
         double amountPaid = 80;
         String currency = "kr";
         String itemIdentifier = "1";

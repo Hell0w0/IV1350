@@ -21,8 +21,10 @@ public class EISHandler {
             return new ItemDTO("Råttfälla",12,56,"Hjälper dig att fånga råttor eller nypa dina kompisar i tårna.","1");
         else if(identifier.equals("2"))
             return new ItemDTO("Sko",12,2,"Bra att ha på fötter.","2");
-        else
+        else if(identifier.equals("3"))
             return new ItemDTO("Pannkakor",12,8,"Gott att äta.","3");
+        else
+            return null;
 
 
     }

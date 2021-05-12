@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import se.kth.IV1350.pos.DTO.SaleInformationDTO;
 import se.kth.IV1350.pos.integration.EASHandler;
 import se.kth.IV1350.pos.integration.EISHandler;
+import se.kth.IV1350.pos.model.ItemNotFoundException;
 
 
 /**
@@ -51,7 +52,7 @@ public class ControllerTest {
         assertTrue(printout.contains(expectedOutput),"UI did not start correctly");
     }
     @Test
-    public void testEnterSingleItem() {
+    public void testEnterSingleItem() throws ItemNotFoundException {
         instanceToTest.startSale();
         String identifier = "1";
         String name = instanceToTest.enterItem(identifier).getCurrentItemName();
@@ -59,14 +60,14 @@ public class ControllerTest {
     }
 
     @Test
-    public void testChangeWithOneItem() {
+    public void testChangeWithOneItem() throws ItemNotFoundException {
         instanceToTest.startSale();
         instanceToTest.enterItem("1");
         double change = instanceToTest.pay(70,"kr");
         assertEquals(7.28, change,0.01,"Calculate change isnt working correctly");
     }    
     @Test
-    public void testRegisterUpdating() {
+    public void testRegisterUpdating() throws ItemNotFoundException {
         instanceToTest.startSale();
         instanceToTest.enterItem("1");
         instanceToTest.pay(70,"kr");
@@ -74,7 +75,7 @@ public class ControllerTest {
         assertEquals(1062.72, registerAmount,0.001,"Update Register amount isnt working correctly");
     }    
     @Test
-    public void testReceipt() {
+    public void testReceipt() throws ItemNotFoundException {
         instanceToTest.startSale();
         instanceToTest.enterItem("1");
         instanceToTest.enterItem("1");
@@ -83,6 +84,15 @@ public class ControllerTest {
         String receiptString = instanceToTest.completeSale();
         String expectedOutput = "ICA,Ringvägen 1, 666 42\nItems: \nRåttfälla 2 112.0 kr\nSko 1 2.0 kr\nTotal: 127.68 kr\nVAT: 13.68 kr\nAmount paid: 140 kr";
         assertEquals(expectedOutput,receiptString,"Print receipt isnt working correctly");
+    } 
+    @Test
+    public void testItemNotFoundException() throws ItemNotFoundException {
+        String nonExistingItem = "4";
+        try {
+            instanceToTest.enterItem(nonExistingItem);
+        } catch (ItemNotFoundException ex) {
+            fail("Got exception.");
+        } 
     } 
 }
 
