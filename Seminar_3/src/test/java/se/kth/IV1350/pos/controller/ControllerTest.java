@@ -57,30 +57,7 @@ public class ControllerTest {
         String name = instanceToTest.enterItem(identifier).getCurrentItemName();
         assertEquals("Råttfälla", name,"Enter item is not working,expected Name didnt match with identifers name.");
     }
-    @Test
-    public void testRasingQuantityOfItem() {
-        instanceToTest.startSale();
-        String identifier = "1";
-        instanceToTest.enterItem(identifier);
-        SaleInformationDTO secondOfSame = instanceToTest.enterItem(identifier);
-        int quantity = secondOfSame.getCurrentItemQuantity();
-        assertEquals(2, quantity,"Add duplicate is not working");
-    }
-    @Test
-    public void testTotalPriceWithOneItemAdded() {
-        instanceToTest.startSale();
-        String identifier = "1";
-        double totalPrice = instanceToTest.enterItem(identifier).getRunningTotal();
-        assertEquals(62.72, totalPrice,"Calculate totalPrice is not working");
-    } 
-    @Test
-    public void testTotalPriceWithThreeDifferentItems() {
-        instanceToTest.startSale();
-        instanceToTest.enterItem("1");
-        instanceToTest.enterItem("2");
-        double totalPrice = instanceToTest.enterItem("3").getRunningTotal();
-        assertEquals(73.92, totalPrice,"Calculate totalPrice with different items is not working");
-    }
+
     @Test
     public void testChangeWithOneItem() {
         instanceToTest.startSale();

@@ -12,7 +12,7 @@ public class ReceiptPrinter {
      * Prints out the receipt of the current sale to the cusotmer.
      * @param receipt a object of the receipt information of the purchase.
      */
-    public void printReceiptToCustomer(Receipt receipt){
-        System.out.println("Receipt printed.");
+    public String printReceiptToCustomer(Receipt receipt){
+        return "Receipt printed.";
     }
 }

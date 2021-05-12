@@ -37,8 +37,8 @@ public class Receipt {
     /**
      * This function send the receipt information to the printer.
      */
-    public void sendReceiptToPrinter(){   
-        printer.printReceiptToCustomer(this);
+    public String sendReceiptToPrinter(){   
+        return printer.printReceiptToCustomer(this);
     } 
     /**
      * returns the store informaiton, like address and name
