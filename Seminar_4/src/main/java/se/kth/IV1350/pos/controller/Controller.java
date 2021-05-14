@@ -7,6 +7,7 @@ import se.kth.IV1350.pos.DTO.SaleInformationDTO;
 import se.kth.IV1350.pos.integration.CashRegister;
 import se.kth.IV1350.pos.integration.EASHandler;
 import se.kth.IV1350.pos.integration.EISHandler;
+import se.kth.IV1350.pos.model.ItemNotFoundException;
 import se.kth.IV1350.pos.model.Sale;
 
 
@@ -56,8 +57,10 @@ public class Controller {
      * @return the saleInfrmoation for that specific item and the current total to the cashier. 
      * @throws ItemNotFoundException refers to when an item is scanned but it doesnt match any item in the external inventory database
      */
-    public SaleInformationDTO enterItem(String itemIdentifier){
-        ItemDTO item = eis.findItem(itemIdentifier);  
+    public SaleInformationDTO enterItem(String itemIdentifier) throws ItemNotFoundException{
+        ItemDTO item = eis.findItem(itemIdentifier);
+        if (item == null)
+            throw new ItemNotFoundException(itemIdentifier);   
         SaleInformationDTO saleInformation = sale.addItem(item);
         return saleInformation;
     }
