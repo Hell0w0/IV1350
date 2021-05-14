@@ -59,9 +59,20 @@ public class Controller {
      * @throws ItemNotFoundException refers to when an item is scanned but it doesnt match any item in the external inventory database
      */
     public SaleInformationDTO enterItem(String itemIdentifier) throws ItemNotFoundException,DataBaseUnacessibleException{
-        ItemDTO item = eis.findItem(itemIdentifier);  
-        SaleInformationDTO saleInformation = sale.addItem(item);
-        return saleInformation;
+        try{
+            ItemDTO item = eis.findItem(itemIdentifier);  
+            SaleInformationDTO saleInformation = sale.addItem(item);
+            return saleInformation;
+        }
+        catch(ItemNotFoundException itemNotFound){
+            System.err.println("Developer: tried to add item with identifer: "+itemIdentifier);
+            throw itemNotFound;
+        }
+        catch(DataBaseUnacessibleException dataBaseNotStarting){
+            System.err.println("Developer: Database, External Inventory System couldnt start");
+            throw dataBaseNotStarting;
+        }
+
     }
     /**
      * A function that handles the customer paying for thier purchase with cash.

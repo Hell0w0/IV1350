@@ -30,7 +30,7 @@ public class View {
         contr.startSale();
         System.out.println("Sale has started");
         try{
-            SaleInformationDTO addedItem = contr.enterItem("3");
+            SaleInformationDTO addedItem = contr.enterItem("10");
             SaleInformationDTO secondItem = contr.enterItem(itemIdentifier);
             
             System.out.println(addedItem.getCurrentItemName()+" has been added");
@@ -48,10 +48,10 @@ public class View {
             System.out.println("Change: "+change+" "+currency);
         }
         catch(ItemNotFoundException e){
-            System.err.println("Couldnt find item in system");
+            System.err.println("User: Couldnt find item in system");
         }
         catch(DataBaseUnacessibleException ex){
-            System.err.println("Database couldnt load");
+            System.err.println("User: Inventory System down");
         }
         catch(Exception e){
             System.err.println("Something went wrong");
