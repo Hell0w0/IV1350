@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import se.kth.IV1350.pos.controller.Controller;
+import se.kth.IV1350.pos.integration.DataBaseUnacessibleException;
 import se.kth.IV1350.pos.integration.EASHandler;
 import se.kth.IV1350.pos.integration.EISHandler;
+import se.kth.IV1350.pos.integration.ItemNotFoundException;
 
 
 /**
@@ -43,7 +45,7 @@ public class ViewTest {
         System.setOut(originalSysOut);
     }
     @Test
-    public void testRunFakeExe() {
+    public void testRunFakeExe() throws ItemNotFoundException, DataBaseUnacessibleException {
        instanceToTest.runFakeExe();
        String printout = printoutBuffer.toString();
        String expectedOutput = "Sale has started";

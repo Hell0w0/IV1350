@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: se.kth.IV1350.pos.integration.EISHandlerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in se.kth.IV1350.pos.integration.EISHandlerTest
+Tests run: 3, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.003 s <<< FAILURE! - in se.kth.IV1350.pos.integration.EISHandlerTest
+testDataBaseUnacessibleException  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Got exception DataBaseUnacessible.
+	at se.kth.IV1350.pos.integration.EISHandlerTest.testDataBaseUnacessibleException(EISHandlerTest.java:48)
+
+testItemNotFoundException  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Got exception ItemNotFound
+	at se.kth.IV1350.pos.integration.EISHandlerTest.testItemNotFoundException(EISHandlerTest.java:37)
+

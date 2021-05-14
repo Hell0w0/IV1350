@@ -1,5 +1,5 @@
 
-package se.kth.IV1350.pos.model;
+package se.kth.IV1350.pos.integration;
 
 /**
  *
@@ -17,5 +17,6 @@ public class DataBaseUnacessibleException extends Exception {
         super("Unable to find " + dataBaseNotRunning + ", since it wont start");
         this.dataBaseNotRunning = dataBaseNotRunning;
     }
+
 
 }

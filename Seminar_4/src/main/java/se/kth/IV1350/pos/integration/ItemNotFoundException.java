@@ -1,4 +1,4 @@
-package se.kth.IV1350.pos.model;
+package se.kth.IV1350.pos.integration;
 
 /**
  * Thrown when trying to retrive item information from the database when its identifier is not in the system..

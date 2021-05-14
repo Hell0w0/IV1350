@@ -1,10 +1,11 @@
 package se.kth.IV1350.pos.startup;
 
 import se.kth.IV1350.pos.controller.Controller;
+import se.kth.IV1350.pos.integration.DataBaseUnacessibleException;
 import se.kth.IV1350.pos.integration.EASHandler;
 import se.kth.IV1350.pos.integration.EISHandler;
 import se.kth.IV1350.pos.integration.ReceiptPrinter;
-import se.kth.IV1350.pos.model.ItemNotFoundException;
+import se.kth.IV1350.pos.integration.ItemNotFoundException;
 import se.kth.IV1350.pos.view.View;
 
 /**
@@ -16,7 +17,7 @@ public class Main {
      * The main method starts the entire application
      * @param args 
      */
-    public static void main(String[] args) throws ItemNotFoundException{
+    public static void main(String[] args) throws ItemNotFoundException, DataBaseUnacessibleException{
         EASHandler eas = new EASHandler();
         EISHandler eis = new EISHandler();
         ReceiptPrinter printer = new ReceiptPrinter();

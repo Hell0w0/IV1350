@@ -9,7 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import se.kth.IV1350.pos.DTO.SaleInformationDTO;
 import se.kth.IV1350.pos.integration.EASHandler;
 import se.kth.IV1350.pos.integration.EISHandler;
-import se.kth.IV1350.pos.model.ItemNotFoundException;
+import se.kth.IV1350.pos.integration.DataBaseUnacessibleException;
+import se.kth.IV1350.pos.integration.ItemNotFoundException;
 
 
 /**
@@ -52,48 +53,79 @@ public class ControllerTest {
         assertTrue(printout.contains(expectedOutput),"UI did not start correctly");
     }
     @Test
-    public void testEnterSingleItem() throws ItemNotFoundException {
-        instanceToTest.startSale();
-        String identifier = "1";
-        String name = instanceToTest.enterItem(identifier).getCurrentItemName();
-        assertEquals("Råttfälla", name,"Enter item is not working,expected Name didnt match with identifers name.");
+    public void testEnterSingleItem(){
+   
+    
+    
+        try{
+            instanceToTest.startSale();
+            String identifier = "1";
+            String name = instanceToTest.enterItem(identifier).getCurrentItemName();
+            assertEquals("Råttfälla", name,"Enter item is not working,expected Name didnt match with identifers name.");
+        }
+        catch(ItemNotFoundException e){
+            fail("Got exception ItemNotFound");
+        }
+        catch(DataBaseUnacessibleException ex){
+            fail("Got exception ItemNotFound");
+        }
+        
     }
 
     @Test
-    public void testChangeWithOneItem() throws ItemNotFoundException {
-        instanceToTest.startSale();
-        instanceToTest.enterItem("1");
-        double change = instanceToTest.pay(70,"kr");
-        assertEquals(7.28, change,0.01,"Calculate change isnt working correctly");
-    }    
-    @Test
-    public void testRegisterUpdating() throws ItemNotFoundException {
-        instanceToTest.startSale();
-        instanceToTest.enterItem("1");
-        instanceToTest.pay(70,"kr");
-        double registerAmount = instanceToTest.cashRegister.getAmountInRegister();
-        assertEquals(1062.72, registerAmount,0.001,"Update Register amount isnt working correctly");
-    }    
-    @Test
-    public void testReceipt() throws ItemNotFoundException {
-        instanceToTest.startSale();
-        instanceToTest.enterItem("1");
-        instanceToTest.enterItem("1");
-        instanceToTest.enterItem("2");
-        instanceToTest.pay(140,"kr");
-        String receiptString = instanceToTest.completeSale();
-        String expectedOutput = "ICA,Ringvägen 1, 666 42\nItems: \nRåttfälla 2 112.0 kr\nSko 1 2.0 kr\nTotal: 127.68 kr\nVAT: 13.68 kr\nAmount paid: 140 kr";
-        assertEquals(expectedOutput,receiptString,"Print receipt isnt working correctly");
-    } 
-    @Test
-    public void testItemNotFoundException() throws ItemNotFoundException {
-        String nonExistingItem = "4";
-        try {
-            instanceToTest.enterItem(nonExistingItem);
-        } catch (ItemNotFoundException ex) {
-            fail("Got exception.");
-        } 
-    } 
-}
-
+    public void testChangeWithOneItem(){
+        
     
+        try{
+            instanceToTest.startSale();
+            instanceToTest.enterItem("1");
+            double change = instanceToTest.pay(70,"kr");
+            assertEquals(7.28, change,0.01,"Calculate change isnt working correctly");  
+        }
+        catch(ItemNotFoundException e){
+            fail("Got exception ItemNotFound");
+        }
+        catch(DataBaseUnacessibleException ex){
+            fail("Got exception ItemNotFound");
+        }
+        
+    }    
+    @Test
+    public void testRegisterUpdating() {
+        try{
+            instanceToTest.startSale();
+            instanceToTest.enterItem("1");
+            instanceToTest.pay(70,"kr");
+            double registerAmount = instanceToTest.cashRegister.getAmountInRegister();
+            assertEquals(1062.72, registerAmount,0.001,"Update Register amount isnt working correctly");
+        }
+        catch(ItemNotFoundException e){
+            fail("Got exception ItemNotFound");
+        }
+        catch(DataBaseUnacessibleException ex){
+            fail("Got exception ItemNotFound");
+        }
+        
+    }    
+    @Test
+    public void testReceipt(){
+        try{
+            instanceToTest.startSale();
+            instanceToTest.enterItem("1");
+            instanceToTest.enterItem("1");
+            instanceToTest.enterItem("2");
+            instanceToTest.pay(140,"kr");
+            String receiptString = instanceToTest.completeSale();
+            String expectedOutput = "ICA,Ringvägen 1, 666 42\nItems: \nRåttfälla 2 112.0 kr\nSko 1 2.0 kr\nTotal: 127.68 kr\nVAT: 13.68 kr\nAmount paid: 140 kr";
+            assertEquals(expectedOutput,receiptString,"Print receipt isnt working correctly");
+        }
+        catch(ItemNotFoundException e){
+            fail("Got exception ItemNotFound");
+        }
+        catch(DataBaseUnacessibleException ex){
+            fail("Got exception ItemNotFound");
+        }
+
+    } 
+
+}

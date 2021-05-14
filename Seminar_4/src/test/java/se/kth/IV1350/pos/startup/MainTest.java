@@ -6,6 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
+import se.kth.IV1350.pos.integration.ItemNotFoundException;
 
 
 /**
@@ -33,7 +34,7 @@ public class MainTest {
         System.setOut(originalSysOut);
     }
     @Test
-    public void testUIHasStarted() {
+    public void testUIHasStarted() throws ItemNotFoundException {
         String[] args = null;
         Main.main(args);
         String printout = printoutBuffer.toString();

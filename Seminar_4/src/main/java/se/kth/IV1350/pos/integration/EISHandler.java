@@ -9,7 +9,6 @@ package se.kth.IV1350.pos.integration;
 
 import se.kth.IV1350.pos.DTO.ItemDTO;
 import se.kth.IV1350.pos.DTO.SaleDTO;
-import se.kth.IV1350.pos.model.DataBaseUnacessibleException;
 
 public class EISHandler {
     /**
@@ -17,7 +16,7 @@ public class EISHandler {
      * @param identifier the scanned items identifier,
      * @return a object ItemDTO holding the information about the scanned item or null if itemIdentifer doesnt match any items in system.
      */
-    public ItemDTO findItem(String identifier)throws DataBaseUnacessubleException{
+    public ItemDTO findItem(String identifier)throws ItemNotFoundException,DataBaseUnacessibleException{
         if(identifier.equals("1"))
             return new ItemDTO("Råttfälla",12,56,"Hjälper dig att fånga råttor eller nypa dina kompisar i tårna.","1");
         else if(identifier.equals("2"))
@@ -25,9 +24,10 @@ public class EISHandler {
         else if(identifier.equals("3"))
             return new ItemDTO("Pannkakor",12,8,"Gott att äta.","3");
         else if(identifier.equals("10"))
-            throw new DataBaseUnacessibleException;
+            throw new DataBaseUnacessibleException("External Inventory System");
         else
-            return null;
+            throw new ItemNotFoundException(identifier);
+     
 
 
     }
