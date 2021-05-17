@@ -23,6 +23,7 @@ public class View {
     }
     /**
      * Preforms a fake sale, by calling all system operaitions in the controller.
+     * Change itemIdentifier to 10 to throw DataBaseUnacessibleExeption
      */
     public void runFakeExe(){
         
@@ -32,13 +33,14 @@ public class View {
         contr.startSale();
         System.out.println("Sale has started");
         try{
-//            SaleInformationDTO addedItem = contr.enterItem("3");
+            SaleInformationDTO addedItem = contr.enterItem("2");
             SaleInformationDTO secondItem = contr.enterItem(itemIdentifier);
             
-  //          System.out.println(addedItem.getCurrentItemName()+" has been added");
+            System.out.println(addedItem.getCurrentItemName()+" has been added");
             System.out.println(secondItem.getCurrentItemName()+" has been added"); 
-            contr.applyDiscount();
+            double totalPrice = contr.applyDiscount();
             System.out.println("Discount added.");
+            System.out.println("TotalPrice: "+totalPrice+" "+currency);
             System.out.println("Customer pays "+amountPaid+" "+currency);
 
             double change = contr.pay(amountPaid, currency);
@@ -52,7 +54,7 @@ public class View {
             System.err.println("User: Couldnt find item in system");
         }
         catch(DataBaseUnacessibleException ex){
-            System.err.println("User: Inventory System down");
+            System.err.println("User: Server is down");
         }
         catch(Exception e){
             System.err.println("Something went wrong");

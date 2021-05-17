@@ -37,7 +37,7 @@ public class Controller {
     private PaymentDTO paymentDTO;
     
     private Sale sale;
-    CashRegister cashRegister;
+    private CashRegister cashRegister;
     
     private List<SaleObserver> saleObservers = new ArrayList<>();
 
@@ -62,7 +62,7 @@ public class Controller {
         this.eas = eas;
         this.dc = dc;
         
-        this.cashRegister = new CashRegister();
+        this.cashRegister = CashRegister.getInstance();
         
         System.out.println("Controller was started successfully!");
     }
@@ -88,13 +88,19 @@ public class Controller {
             throw dataBaseNotStarting;
         }
     }
-    public void applyDiscount(){
+    
+    /**
+     * Method that applies discount to the sale using startegy pattern
+     * @return totalprice of the sale after discount has been added
+     */
+    public double applyDiscount(){
         SaleDTO saleDTO = sale.createSaleDTO();
         List<DiscountDTO> itemDiscounts=dc.findDiscounts(saleDTO,new ItemDiscount());
         List<DiscountDTO> saleDiscounts=dc.findDiscounts(saleDTO,new SaleDiscount());
        
         sale.applyItemDiscounts(itemDiscounts);
         sale.applyDiscounts(saleDiscounts);
+        return saleDTO.getTotalPrice();
     }
         
     

@@ -17,13 +17,21 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author charl
  */
 public class CashRegisterTest {
-
+    private CashRegister instance;
+    
+    
+    @BeforeEach
+    public void setUp() {
+         instance = CashRegister.getInstance();
+    }
+    
     @Test
     public void testCountAmountInRegister() {
-        CashRegister instance = new CashRegister();
-        double expResult = 1000;
-        double result = instance.countAmountInRegister();
+        double expResult = instance.getAmountInRegister()+10;
+        instance.updateAmountInRegister(10);
+        double result = instance.getAmountInRegister();
         assertEquals(expResult, result, 0.0);
     }
+   
    
 }

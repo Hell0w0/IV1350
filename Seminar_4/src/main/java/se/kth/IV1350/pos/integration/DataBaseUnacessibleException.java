@@ -1,16 +1,13 @@
 
 package se.kth.IV1350.pos.integration;
 
-/**
- *
- * @author charl
- */
+
 public class DataBaseUnacessibleException extends Exception {
     private String dataBaseNotRunning;
 
     /**
-     * Creates a new instance with a message specifying for which identifier isnt in the system database.
-     *
+     * Creates a new instance with a message specifying which database is currently down.
+     * Identifier 10 throws this exception
      * @param dataBaseNotRunning The database that wont run.
      */
     public DataBaseUnacessibleException(String dataBaseNotRunning) {

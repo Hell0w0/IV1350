@@ -26,7 +26,10 @@ class TotalRevenueFileOutput implements SaleObserver {
             ex.printStackTrace();
         }
     }
-
+    /**
+     * Updates internal total revenue and logs it in a text file when observer is notified
+     * @param priceOfPurchase 
+     */
     public void newSale(double priceOfPurchase) {
         totalRevenue += priceOfPurchase;
         logFile.println("Total revenue: " + totalRevenue);

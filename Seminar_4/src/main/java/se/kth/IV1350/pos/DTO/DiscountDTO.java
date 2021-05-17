@@ -2,8 +2,7 @@
 package se.kth.IV1350.pos.DTO;
 
     /**
- * DiscountDTO is a class that holds data about the payment made and is used to transfer data between classes.
- * It is created in the pay function in Controller.
+ * DiscountDTO is a class that holds data about the disscounts and is used to transfer data between classes.
  * @author charl
  */
 public class DiscountDTO {
@@ -23,6 +22,11 @@ public class DiscountDTO {
         this.idOfDiscountedItem=id;
 
     }
+    /**
+     * 
+     * @param amount refter to the discount amount
+     * @param min minimum requiered total price for the discount to be viable.
+     */
     public DiscountDTO(double amount,double min){
         this.amount=amount;
         this.type="sale";
@@ -42,9 +46,17 @@ public class DiscountDTO {
     public String getType(){
         return type;
     }
+    /**
+     * Return the id of the discounted item.
+     * @return String of the item identifier
+     */
     public String getIdOfDiscountedItem(){
         return idOfDiscountedItem;
     }
+    /**
+     * Return the minimum requiered total price of the sale.
+     * @return double minimum requiered total price
+     */
     public double getMinRequiered(){
         return minRequired;
     }

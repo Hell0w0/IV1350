@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package se.kth.IV1350.pos.discount;
 
 import java.util.ArrayList;
@@ -11,11 +7,16 @@ import se.kth.IV1350.pos.DTO.DiscountDTO;
 import se.kth.IV1350.pos.DTO.SaleDTO;
 
 /**
- *
+ *Find the discounts that applies to the requierments the total price of the sale
  * @author charl
  */
 public class SaleDiscount implements DiscountFinder{
-
+    /**
+     * 
+     * @param saleDTO information about the sale
+     * @param availableDiscounts list of all avalible discounts
+     * @return the discounts that applies tot he current sale
+     */
     @Override
     public List<DiscountDTO> findDiscount(SaleDTO saleDTO, List<DiscountDTO> availableDiscounts) {
 

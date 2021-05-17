@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="se.kth.IV1350.pos.controller.ControllerTest" time="0.13" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="se.kth.IV1350.pos.controller.ControllerTest" time="0.093" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="15"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="SE"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-15.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\charl\AppData\Local\Temp\surefire8611113597679929260\surefirebooter5821714598784129565.jar C:\Users\charl\AppData\Local\Temp\surefire8611113597679929260 2021-05-17T12-39-37_147-jvmRun1 surefire13568580485086259853tmp surefire_08188693082014843093tmp"/>
+    <property name="sun.java.command" value="C:\Users\charl\AppData\Local\Temp\surefire12707237198655795130\surefirebooter8254037205342056274.jar C:\Users\charl\AppData\Local\Temp\surefire12707237198655795130 2021-05-17T15-10-17_960-jvmRun1 surefire2241807509286965332tmp surefire_05299699964568592361tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\target\test-classes;C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\target\classes;C:\Users\charl\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.6.0\junit-jupiter-api-5.6.0.jar;C:\Users\charl\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\charl\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-commons\1.6.0\junit-platform-commons-1.6.0.jar;C:\Users\charl\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.6.0\junit-jupiter-params-5.6.0.jar;C:\Users\charl\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.0\junit-jupiter-engine-5.6.0.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-engine\1.6.0\junit-platform-engine-1.6.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\charl\AppData\Local\Temp\surefire8611113597679929260\surefirebooter5821714598784129565.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\charl\AppData\Local\Temp\surefire12707237198655795130\surefirebooter8254037205342056274.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="15.0.2+7-27"/>
@@ -56,9 +56,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="59.0"/>
   </properties>
-  <testcase name="testEnterSingleItem" classname="se.kth.IV1350.pos.controller.ControllerTest" time="0.078"/>
-  <testcase name="testChangeWithOneItem" classname="se.kth.IV1350.pos.controller.ControllerTest" time="0.003"/>
-  <testcase name="testRegisterUpdating" classname="se.kth.IV1350.pos.controller.ControllerTest" time="0.001"/>
-  <testcase name="testReceipt" classname="se.kth.IV1350.pos.controller.ControllerTest" time="0.029"/>
-  <testcase name="testCashRegisterCreation" classname="se.kth.IV1350.pos.controller.ControllerTest" time="0.003"/>
+  <testcase name="testEnterSingleItem" classname="se.kth.IV1350.pos.controller.ControllerTest" time="0.05"/>
+  <testcase name="testChangeWithOneItem" classname="se.kth.IV1350.pos.controller.ControllerTest" time="0.002"/>
+  <testcase name="testReceipt" classname="se.kth.IV1350.pos.controller.ControllerTest" time="0.027"/>
+  <testcase name="testCashRegisterCreation" classname="se.kth.IV1350.pos.controller.ControllerTest" time="0.002"/>
 </testsuite>

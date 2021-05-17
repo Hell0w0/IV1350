@@ -37,6 +37,7 @@ public class ControllerTest {
         eas = new EASHandler();
         eis = new EISHandler();
         dc = new DCHandler();
+        
         instanceToTest = new Controller(eis,eas,dc);
 
     }
@@ -92,23 +93,7 @@ public class ControllerTest {
         }
         
     }    
-    @Test
-    public void testRegisterUpdating() {
-        try{
-            instanceToTest.startSale();
-            instanceToTest.enterItem("1");
-            instanceToTest.pay(70,"kr");
-            double registerAmount = instanceToTest.cashRegister.getAmountInRegister();
-            assertEquals(1062.72, registerAmount,0.001,"Update Register amount isnt working correctly");
-        }
-        catch(ItemNotFoundException e){
-            fail("Got exception ItemNotFound");
-        }
-        catch(DataBaseUnacessibleException ex){
-            fail("Got exception ItemNotFound");
-        }
-        
-    }    
+ 
     @Test
     public void testReceipt(){
         try{
