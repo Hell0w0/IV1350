@@ -6,7 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import se.kth.IV1350.pos.DTO.SaleInformationDTO;
+import se.kth.IV1350.pos.integration.DCHandler;
 import se.kth.IV1350.pos.integration.EASHandler;
 import se.kth.IV1350.pos.integration.EISHandler;
 import se.kth.IV1350.pos.integration.DataBaseUnacessibleException;
@@ -24,6 +24,7 @@ public class ControllerTest {
     private String itemIdentifier;
     private EISHandler eis;
     private EASHandler eas;
+    private DCHandler dc;
     
     @BeforeEach
     public void setUp() {        
@@ -35,7 +36,8 @@ public class ControllerTest {
         
         eas = new EASHandler();
         eis = new EISHandler();
-        instanceToTest = new Controller(eis,eas);
+        dc = new DCHandler();
+        instanceToTest = new Controller(eis,eas,dc);
 
     }
     

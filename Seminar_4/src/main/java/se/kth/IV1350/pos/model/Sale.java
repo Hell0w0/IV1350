@@ -3,6 +3,7 @@ package se.kth.IV1350.pos.model;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import se.kth.IV1350.pos.DTO.DiscountDTO;
 import se.kth.IV1350.pos.DTO.ItemDTO;
 import se.kth.IV1350.pos.DTO.PaymentDTO;
 import se.kth.IV1350.pos.DTO.SaleDTO;
@@ -150,5 +151,31 @@ public class Sale {
             obs.newSale(totalPrice);
         }
      }
+    
+    public void applyItemDiscounts(List<DiscountDTO> discounts){
+        for(DiscountDTO discount: discounts){
+            for(Item item : items){
+                if(item.getItemIdentifier().equals(discount.getIdOfDiscountedItem())){
+                    item.applyDiscounts(discount);
+            }
+            }
+        }
+            
+    }
+    /**
+     * If the discount is a precentage of the total the first if statment is used, but if its a sum subtracted its the second one
+     * @param saleDiscounts 
+     */
+    public void applyDiscounts(List<DiscountDTO> saleDiscounts){
+        for(DiscountDTO discount:saleDiscounts){
+            if(discount.getAmount()<1){
+                totalPrice*=discount.getAmount();
+            }
+            else{
+                totalPrice-=discount.getAmount();
+            }
+        }
+        
+    }
 
 }

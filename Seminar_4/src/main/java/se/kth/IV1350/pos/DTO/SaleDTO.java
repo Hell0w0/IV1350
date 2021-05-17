@@ -53,7 +53,7 @@ public class SaleDTO {
      * publicItems refers to a duplicate list of items.
      * @return a list of Item objects
      */
-    public ArrayList getItems(){
+    public ArrayList<Item> getItems(){
         ArrayList<Item> publicItems = new ArrayList<Item>();
         
         for(Item item:items){

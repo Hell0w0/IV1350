@@ -1,6 +1,7 @@
 package se.kth.IV1350.pos.startup;
 
 import se.kth.IV1350.pos.controller.Controller;
+import se.kth.IV1350.pos.integration.DCHandler;
 import se.kth.IV1350.pos.integration.DataBaseUnacessibleException;
 import se.kth.IV1350.pos.integration.EASHandler;
 import se.kth.IV1350.pos.integration.EISHandler;
@@ -21,7 +22,8 @@ public class Main {
         EASHandler eas = new EASHandler();
         EISHandler eis = new EISHandler();
         ReceiptPrinter printer = new ReceiptPrinter();
-        Controller contr = new Controller(eis,eas);
+        DCHandler dc = new DCHandler();
+        Controller contr = new Controller(eis,eas,dc);
         View view = new View(contr);
         view.runFakeExe();
     }

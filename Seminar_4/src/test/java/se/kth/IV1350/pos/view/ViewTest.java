@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import se.kth.IV1350.pos.controller.Controller;
+import se.kth.IV1350.pos.integration.DCHandler;
 import se.kth.IV1350.pos.integration.DataBaseUnacessibleException;
 import se.kth.IV1350.pos.integration.EASHandler;
 import se.kth.IV1350.pos.integration.EISHandler;
@@ -24,6 +25,7 @@ public class ViewTest {
     
     private EISHandler eis;
     private EASHandler eas;
+    private DCHandler dc;
     @BeforeEach
     public void setUp(){
       
@@ -34,7 +36,8 @@ public class ViewTest {
         
         eis = new EISHandler();
         eas = new EASHandler();
-        Controller contr = new Controller(eis,eas);
+        dc  =new DCHandler();
+        Controller contr = new Controller(eis,eas,dc);
         instanceToTest = new View(contr);
     }
     @AfterEach

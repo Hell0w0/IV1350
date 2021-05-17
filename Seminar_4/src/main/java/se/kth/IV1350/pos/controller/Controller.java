@@ -2,15 +2,20 @@ package se.kth.IV1350.pos.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import se.kth.IV1350.pos.DTO.DiscountDTO;
 import se.kth.IV1350.pos.DTO.ItemDTO;
 import se.kth.IV1350.pos.DTO.PaymentDTO;
 import se.kth.IV1350.pos.DTO.SaleDTO;
 import se.kth.IV1350.pos.DTO.SaleInformationDTO;
+import se.kth.IV1350.pos.discount.ItemDiscount;
+import se.kth.IV1350.pos.discount.SaleDiscount;
 import se.kth.IV1350.pos.integration.CashRegister;
+import se.kth.IV1350.pos.integration.DCHandler;
 import se.kth.IV1350.pos.integration.EASHandler;
 import se.kth.IV1350.pos.integration.EISHandler;
 import se.kth.IV1350.pos.integration.DataBaseUnacessibleException;
 import se.kth.IV1350.pos.integration.ItemNotFoundException;
+import se.kth.IV1350.pos.model.Item;
 import se.kth.IV1350.pos.model.Sale;
 import se.kth.IV1350.pos.model.SaleObserver;
 
@@ -26,6 +31,7 @@ public class Controller {
     
     private EISHandler eis;
     private EASHandler eas;
+    private DCHandler dc;
     
     private SaleDTO saleDTO;
     private PaymentDTO paymentDTO;
@@ -51,9 +57,10 @@ public class Controller {
      * @param eas handler for all calls to External Accounting System.
      * cashRegister generates a new instance of a register.
      */
-    public Controller(EISHandler eis,EASHandler eas){
+    public Controller(EISHandler eis,EASHandler eas,DCHandler dc){
         this.eis = eis;
         this.eas = eas;
+        this.dc = dc;
         
         this.cashRegister = new CashRegister();
         
@@ -80,8 +87,17 @@ public class Controller {
             System.err.println("Developer: Server/Database, External Inventory System is down");
             throw dataBaseNotStarting;
         }
-
     }
+    public void applyDiscount(){
+        SaleDTO saleDTO = sale.createSaleDTO();
+        List<DiscountDTO> itemDiscounts=dc.findDiscounts(saleDTO,new ItemDiscount());
+        List<DiscountDTO> saleDiscounts=dc.findDiscounts(saleDTO,new SaleDiscount());
+       
+        sale.applyItemDiscounts(itemDiscounts);
+        sale.applyDiscounts(saleDiscounts);
+    }
+        
+    
     /**
      * A function that handles the customer paying for thier purchase with cash.
      * Change is calculated from the amount the customer paid with the total pice of the purchase subtacted from it.

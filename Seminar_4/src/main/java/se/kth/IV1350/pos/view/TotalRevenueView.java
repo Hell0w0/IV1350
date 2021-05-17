@@ -8,7 +8,7 @@ package se.kth.IV1350.pos.view;
 import se.kth.IV1350.pos.model.SaleObserver;
 
 /**
- *
+ * Prints out total revenue when a new sale is completed
  * @author charl
  */
 public class TotalRevenueView implements SaleObserver {

@@ -1,5 +1,6 @@
 package se.kth.IV1350.pos.model;
 
+import se.kth.IV1350.pos.DTO.DiscountDTO;
 import se.kth.IV1350.pos.DTO.ItemDTO;
 
 /**
@@ -43,6 +44,17 @@ public class Item {
         this.description = itemDTO.getDescription();
         this.itemIdentifier  = itemDTO.getItemIdentifier();
     }
+    
+    public void applyDiscounts(DiscountDTO discount){
+        if(discount.getAmount()<1){
+            price*=discount.getAmount();
+        }
+        else{
+            price-=discount.getAmount();
+        }
+    }
+    
+    
     /**
      * Return the name of the item.
      * @return string name of item
