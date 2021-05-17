@@ -1,5 +1,7 @@
 package se.kth.IV1350.pos.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import se.kth.IV1350.pos.DTO.ItemDTO;
 import se.kth.IV1350.pos.DTO.PaymentDTO;
 import se.kth.IV1350.pos.DTO.SaleDTO;
@@ -10,6 +12,7 @@ import se.kth.IV1350.pos.integration.EISHandler;
 import se.kth.IV1350.pos.integration.DataBaseUnacessibleException;
 import se.kth.IV1350.pos.integration.ItemNotFoundException;
 import se.kth.IV1350.pos.model.Sale;
+import se.kth.IV1350.pos.model.SaleObserver;
 
 
 /**
@@ -29,6 +32,9 @@ public class Controller {
     
     private Sale sale;
     CashRegister cashRegister;
+    
+    private List<SaleObserver> saleObservers = new ArrayList<>();
+
   
     /**
      * Starts a new sale. This method must be called before anything else is done during a sale.
@@ -36,6 +42,8 @@ public class Controller {
      */
     public void startSale(){
         sale = new Sale();
+        for(SaleObserver obs: saleObservers)
+            sale.addSaleObserver(obs);
     }
     /**
      * 
@@ -69,7 +77,7 @@ public class Controller {
             throw itemNotFound;
         }
         catch(DataBaseUnacessibleException dataBaseNotStarting){
-            System.err.println("Developer: Database, External Inventory System couldnt start");
+            System.err.println("Developer: Server/Database, External Inventory System is down");
             throw dataBaseNotStarting;
         }
 
@@ -109,6 +117,13 @@ public class Controller {
     private void updateEISAndEAS(){
         eas.registerPayment(paymentDTO);
         eis.updateInventory(saleDTO);
+    }
+    /**
+     * Observer will be notified when a sale has been paid for.
+     * @param obs observer to notify
+     */
+    public void addSaleObserver(SaleObserver obs){
+        saleObservers.add(obs);
     }
 
 }

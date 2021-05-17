@@ -1,5 +1,6 @@
 C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\model\Item.java
 C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\integration\ReceiptPrinter.java
+C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\model\SaleObserver.java
 C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\DTO\ItemDTO.java
 C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\integration\CashRegister.java
 C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\model\Sale.java
@@ -8,9 +9,11 @@ C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos
 C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\controller\Controller.java
 C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\DTO\PaymentDTO.java
 C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\DTO\SaleInformationDTO.java
+C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\view\TotalRevenueView.java
 C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\DTO\SaleDTO.java
 C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\view\View.java
 C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\integration\DataBaseUnacessibleException.java
 C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\integration\EASHandler.java
 C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\model\Receipt.java
 C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\startup\Main.java
+C:\Users\charl\Documents\GitHub\IV1350\Seminar_4\src\main\java\se\kth\IV1350\pos\view\TotalRevenueFileOutput.java

@@ -14,7 +14,7 @@ public class DataBaseUnacessibleException extends Exception {
      * @param dataBaseNotRunning The database that wont run.
      */
     public DataBaseUnacessibleException(String dataBaseNotRunning) {
-        super("Unable to find " + dataBaseNotRunning + ", since it wont start");
+        super("Unable to start database" + dataBaseNotRunning + ", since it wont start");
         this.dataBaseNotRunning = dataBaseNotRunning;
     }
 

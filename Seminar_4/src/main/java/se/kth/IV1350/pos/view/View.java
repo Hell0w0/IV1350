@@ -18,6 +18,8 @@ public class View {
      */
     public View(Controller contr){
         this.contr = contr;
+        contr.addSaleObserver(new TotalRevenueView());
+        contr.addSaleObserver(new TotalRevenueFileOutput());
     }
     /**
      * Preforms a fake sale, by calling all system operaitions in the controller.
@@ -30,7 +32,7 @@ public class View {
         contr.startSale();
         System.out.println("Sale has started");
         try{
-            SaleInformationDTO addedItem = contr.enterItem("10");
+            SaleInformationDTO addedItem = contr.enterItem("3");
             SaleInformationDTO secondItem = contr.enterItem(itemIdentifier);
             
             System.out.println(addedItem.getCurrentItemName()+" has been added");

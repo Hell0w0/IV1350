@@ -2,6 +2,7 @@ package se.kth.IV1350.pos.model;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import se.kth.IV1350.pos.DTO.ItemDTO;
 import se.kth.IV1350.pos.DTO.PaymentDTO;
 import se.kth.IV1350.pos.DTO.SaleDTO;
@@ -17,6 +18,7 @@ public class Sale {
     private ArrayList <Item> publicItems; 
     private double totalPrice;
     private double totalVAT;
+    private List<SaleObserver> saleObservers= new ArrayList<>();
     
     private Item addedItem;
     
@@ -85,6 +87,7 @@ public class Sale {
     public String printReceipt(PaymentDTO paymentDTO){
         Receipt receipt = new Receipt(this.createSaleDTO(),paymentDTO);
         receipt.sendReceiptToPrinter();
+        notifyObservers();
         return receipt.getReceiptSummary();
     }
     /**
@@ -134,5 +137,18 @@ public class Sale {
         }
         return 0;
     }
+    /**
+     * Will notify observers when sale is complete
+     * @param obs observer to notify
+     */
+    public void addSaleObserver(SaleObserver obs){
+        saleObservers.add(obs);
+    }
     
+    private void notifyObservers() {
+        for (SaleObserver obs : saleObservers) {
+            obs.newSale(totalPrice);
+        }
+     }
+
 }

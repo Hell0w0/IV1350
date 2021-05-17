@@ -21,31 +21,36 @@ public class EISHandlerTest {
             assertEquals(expResult, result);
         } 
         catch (ItemNotFoundException ex) {
-            fail("Got exception.");
+            fail("Got exception itemNotFound.");
         } 
         catch (DataBaseUnacessibleException e) {
-            fail("Got exception.");
+            fail("Got exception DataBaseUnacessible.");
         } 
     }
     @Test
-    public void testItemNotFoundException() throws ItemNotFoundException, DataBaseUnacessibleException{
+    public void testItemNotFoundException() throws DataBaseUnacessibleException{
         String nonExistingItem = "4";
         EISHandler instance = new EISHandler();
         try {
             instance.findItem(nonExistingItem);
+            fail("Exception ItemNotFound wasnt caught");
+
         } catch (ItemNotFoundException ex) {
-            fail("Got exception ItemNotFound");
+            assertTrue(ex.getMessage().contains("not in the inventory"),"The exception message was wrong");
+
         } 
     }     
     @Test
-    public void testDataBaseUnacessibleException() throws DataBaseUnacessibleException, ItemNotFoundException {
+    public void testDataBaseUnacessibleException() throws ItemNotFoundException{
         String dataBaseNotStartingIdentifier = "10";
         try {
             EISHandler instance = new EISHandler();
 
             instance.findItem(dataBaseNotStartingIdentifier);
+            fail("Exception DataBaseUnacessible wasnt caught");
+
         } catch (DataBaseUnacessibleException ex) {
-            fail("Got exception DataBaseUnacessible.");
+            assertTrue(ex.getMessage().contains("start database"),"The exception message was wrong");
         } 
     } 
     
