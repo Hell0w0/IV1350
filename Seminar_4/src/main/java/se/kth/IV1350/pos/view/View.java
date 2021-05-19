@@ -34,9 +34,12 @@ public class View {
         System.out.println("Sale has started");
         try{
             SaleInformationDTO addedItem = contr.enterItem("2");
+            System.out.println(addedItem.getCurrentItemName()+" has been added");
+
+            contr.enterItem("2");
+
             SaleInformationDTO secondItem = contr.enterItem(itemIdentifier);
             
-            System.out.println(addedItem.getCurrentItemName()+" has been added");
             System.out.println(secondItem.getCurrentItemName()+" has been added"); 
             double totalPrice = contr.applyDiscount();
             System.out.println("Discount added.");

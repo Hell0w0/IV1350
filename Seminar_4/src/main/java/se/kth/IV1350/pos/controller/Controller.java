@@ -15,7 +15,6 @@ import se.kth.IV1350.pos.integration.EASHandler;
 import se.kth.IV1350.pos.integration.EISHandler;
 import se.kth.IV1350.pos.integration.DataBaseUnacessibleException;
 import se.kth.IV1350.pos.integration.ItemNotFoundException;
-import se.kth.IV1350.pos.model.Item;
 import se.kth.IV1350.pos.model.Sale;
 import se.kth.IV1350.pos.model.SaleObserver;
 
@@ -73,7 +72,7 @@ public class Controller {
      * @return the saleInfrmoation for that specific item and the current total to the cashier. 
      * @throws ItemNotFoundException refers to when an item is scanned but it doesnt match any item in the external inventory database
      */
-    public SaleInformationDTO enterItem(String itemIdentifier) throws ItemNotFoundException,DataBaseUnacessibleException{
+    public SaleInformationDTO enterItem(String itemIdentifier) throws ItemNotFoundException,DataBaseUnacessibleException,Exception{
         try{
             ItemDTO item = eis.findItem(itemIdentifier);  
             SaleInformationDTO saleInformation = sale.addItem(item);
@@ -86,6 +85,10 @@ public class Controller {
         catch(DataBaseUnacessibleException dataBaseNotStarting){
             System.err.println("Developer: Server/Database, External Inventory System is down");
             throw dataBaseNotStarting;
+        }
+        catch(Exception e){
+            System.err.println("Something is wrong with the code.");
+            throw e;
         }
     }
     
@@ -100,7 +103,7 @@ public class Controller {
        
         sale.applyItemDiscounts(itemDiscounts);
         sale.applyDiscounts(saleDiscounts);
-        return saleDTO.getTotalPrice();
+        return sale.getTotalPrice();
     }
         
     
