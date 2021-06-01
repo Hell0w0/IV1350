@@ -6,19 +6,23 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalTime;
 
-/**
- *PrintWriterComposition, implemented PrintWriter using Composition
- * @author charl
- */
+
 public class PrintWriterComposition {
-    private PrintWriter writer;
+    private PrintWriter printWriter;
 
+    /**
+     *PrintWriterComposition, implemented PrintWriter using Composition
+     * @throws IOException if the file doesnt exisit or cant be opened for some reason
+     */
     public PrintWriterComposition() throws IOException {
-        writer = new PrintWriter(new FileWriter("total-revenue-compotion.txt"), true);
+        printWriter = new PrintWriter(new FileWriter("total-revenue-compotion.txt"), true);
     }
-
+    /**
+     * writes the time and message, total revenue in the file total-revenue-composition.txt
+     * @param message a string consisiting of the total revenue made.
+     */
     public void println(String message) {
-        LocalTime timeOfWrite = LocalTime.now();
-        writer.println("Print from " + timeOfWrite.getHour() + ":" + timeOfWrite.getMinute() + " \n" + message);
+        LocalTime writeTime = LocalTime.now();
+        printWriter.println("Print from " + writeTime.getHour() + ":" + writeTime.getMinute() + " \n" + message);
     }
 }

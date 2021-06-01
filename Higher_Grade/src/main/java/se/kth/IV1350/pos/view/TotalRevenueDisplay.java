@@ -14,7 +14,10 @@ public abstract class TotalRevenueDisplay implements SaleObserver {
     protected TotalRevenueDisplay() {
         totalRevenue = 0;
     }
-
+    /**
+     * Overrides newSale by calculating the total revenue and using showTotalIncome to display the totalRevenue depending on what method is used.
+     * @param priceOfTheSale 
+     */
     @Override
     public void newSale(double priceOfTheSale) {
         calculateTotalIncome(priceOfTheSale);
