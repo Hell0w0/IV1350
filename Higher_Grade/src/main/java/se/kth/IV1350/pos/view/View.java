@@ -57,7 +57,7 @@ public class View {
             System.err.println("User: Couldnt find item in system");
         }
         catch(DataBaseUnacessibleException ex){
-            System.err.println("User: Server is down");
+            System.err.println("User: Something went wrong, try again later.");
         }
         catch(Exception e){
             System.err.println("Something went wrong");

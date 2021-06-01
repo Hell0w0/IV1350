@@ -14,9 +14,7 @@ import se.kth.IV1350.pos.model.SaleObserver;
 class TotalRevenueView extends TotalRevenueDisplay {
     @Override
     protected void doShowTotalIncome(double totalRevenue) throws Exception {
-        System.out.println("--- A message from TotalRevenueobserver ---");
         System.out.println("The total revenue since the program started is: " + totalRevenue);
-        System.out.println("-------------------------------------------");
         
     }
 
