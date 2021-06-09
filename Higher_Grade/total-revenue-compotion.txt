@@ -1,2 +1,2 @@
-Print from 15:6 
+Print from 15:22 
 Total revenue: 33.6

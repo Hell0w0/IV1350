@@ -25,5 +25,12 @@ public class CashRegisterTest {
         double result = instance.countAmountInRegister();
         assertEquals(expResult, result, 0.0);
     }
-   
+    @Test
+    public void testUpdateAmountInRegister() {
+        CashRegister instance = new CashRegister();
+        double expResult = 1010;
+        instance.updateAmountInRegister(10);
+        double result = instance.getAmountInRegister();
+        assertEquals(expResult, result, 0.0);
+    }   
 }
